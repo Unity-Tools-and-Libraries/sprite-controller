@@ -8,3 +8,5 @@ Attach this to the object whose Sprite Renderer will be controlled. A Sprite Lib
 
 Add the categories and labels of the sprite library that will be used to the Categories and Labels properties. At runtime, set the `CategoryIndex` and `LabelIndex` to select the category and label to use;
 these will be used to get the sprite from the library.
+
+You can keep the `Labels` array empty, and the index value will be turned into a string and used directly.
