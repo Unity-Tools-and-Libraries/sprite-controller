@@ -17,6 +17,9 @@ namespace io.github.thisisnozaku.sprites {
 		public string[] Categories;
 		public string[] Labels;
 
+		[Tooltip("This controller will also control these controllers.")]
+		public SpriteController[] descendentControllers;
+
 		// Start is called before the first frame update
 		void Start()
 		{
@@ -27,13 +30,22 @@ namespace io.github.thisisnozaku.sprites {
 		// Update is called once per frame
 		void Update()
 		{
+			string spriteCategory = Categories[CategoryIndex];
+			string spriteLabel = Labels.Length > 0 ? Labels[LabelIndex] : LabelIndex.ToString();
+			UpdateSprite(spriteCategory, spriteLabel);
+			foreach(var controlled in descendentControllers)
+            {
+				controlled.UpdateSprite(spriteCategory, spriteLabel);
+            }
+		}
+
+		public void UpdateSprite(string spriteCategory, string spriteLabel)
+        {
 			try
 			{
-				string spriteCategory = Categories[CategoryIndex];
-				string spriteLabel = Labels.Length > 0 ? Labels[LabelIndex] : LabelIndex.ToString();
-	
 				spriteRenderer.sprite = spriteLibrary.GetSprite(spriteCategory, spriteLabel);
-			} catch (Exception ex)
+			}
+			catch (Exception ex)
 			{
 				throw new InvalidOperationException(string.Format("Failed to update sprite."), ex);
 			}
