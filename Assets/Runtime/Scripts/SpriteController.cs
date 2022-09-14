@@ -30,7 +30,10 @@ namespace io.github.thisisnozaku.sprites {
 		{
 			string spriteCategory = Categories[CategoryIndex];
 			string spriteLabel = Labels.Length > 0 ? Labels[LabelIndex] : LabelIndex.ToString();
-			UpdateSprite(spriteCategory, spriteLabel);
+			if (spriteRenderer != null)
+			{
+				UpdateSprite(spriteCategory, spriteLabel);
+			}
 			foreach(var controlled in descendentControllers)
             {
 				controlled.UpdateSprite(spriteCategory, spriteLabel);
