@@ -2,8 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 namespace io.github.thisisnozaku.sprites {
-	[RequireComponent(typeof(SpriteRenderer))]
-	[RequireComponent(typeof(SpriteLibrary))]
 	public class SpriteController : MonoBehaviour
 	{
 		private SpriteRenderer spriteRenderer;
