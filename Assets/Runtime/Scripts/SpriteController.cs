@@ -36,6 +36,8 @@ namespace io.github.thisisnozaku.sprites {
 			}
 			foreach(var controlled in descendentControllers)
             {
+				controlled.CategoryIndex = CategoryIndex;
+				controlled.LabelIndex = LabelIndex;
 				controlled.UpdateSprite(spriteCategory, spriteLabel);
             }
 		}
