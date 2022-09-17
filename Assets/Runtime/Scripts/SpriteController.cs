@@ -24,7 +24,7 @@ namespace io.github.thisisnozaku.sprites {
 		// Update is called once per frame
 		void Update()
 		{
-			if (Categories.Length > 0 && Labels.Length > 0)
+			if (Categories.Length > 0)
 			{
 				string spriteCategory = Categories[CategoryIndex];
 				string spriteLabel = Labels.Length > 0 ? Labels[LabelIndex] : LabelIndex.ToString();
