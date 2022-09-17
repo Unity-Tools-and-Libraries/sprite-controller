@@ -2,9 +2,12 @@ using System;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 namespace io.github.thisisnozaku.sprites {
+	[ExecuteAlways]
 	public class SpriteController : MonoBehaviour
 	{
+		[SerializeField]
 		private SpriteRenderer spriteRenderer;
+		[SerializeField]
 		private SpriteLibrary spriteLibrary;
 
 		[Tooltip("The index of the category. Used as the index to fetch the string from the Categories that is used to fetch from the sprite library.")]
@@ -18,19 +21,12 @@ namespace io.github.thisisnozaku.sprites {
 		[Tooltip("This controller will also control these controllers.")]
 		public SpriteController[] descendentControllers;
 
-		// Start is called before the first frame update
-		void Start()
-		{
-			spriteRenderer = GetComponent<SpriteRenderer>();
-			spriteLibrary = GetComponent<SpriteLibrary>();
-		}
-
 		// Update is called once per frame
 		void Update()
 		{
 			string spriteCategory = Categories[CategoryIndex];
 			string spriteLabel = Labels.Length > 0 ? Labels[LabelIndex] : LabelIndex.ToString();
-			if (spriteRenderer != null)
+			if (spriteRenderer != null && spriteLabel != null)
 			{
 				UpdateSprite(spriteCategory, spriteLabel);
 			}
