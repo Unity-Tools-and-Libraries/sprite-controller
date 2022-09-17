@@ -45,6 +45,14 @@ namespace io.github.thisisnozaku.sprites {
         {
 			try
 			{
+				if(Application.isEditor)
+                {
+					// Trigger a regeneration of the cache. Avoids a Null ref exception in the editor.
+					var original = spriteLibrary.spriteLibraryAsset;
+					spriteLibrary.spriteLibraryAsset = null;
+					spriteLibrary.spriteLibraryAsset = original;
+				}
+				
 				spriteRenderer.sprite = spriteLibrary.GetSprite(spriteCategory, spriteLabel);
 			}
 			catch (Exception ex)
