@@ -24,18 +24,21 @@ namespace io.github.thisisnozaku.sprites {
 		// Update is called once per frame
 		void Update()
 		{
-			string spriteCategory = Categories[CategoryIndex];
-			string spriteLabel = Labels.Length > 0 ? Labels[LabelIndex] : LabelIndex.ToString();
-			if (spriteRenderer != null && spriteLabel != null)
+			if (Categories.Length > 0 && Labels.Length > 0)
 			{
-				UpdateSprite(spriteCategory, spriteLabel);
+				string spriteCategory = Categories[CategoryIndex];
+				string spriteLabel = Labels.Length > 0 ? Labels[LabelIndex] : LabelIndex.ToString();
+				if (spriteRenderer != null && spriteLibrary != null)
+				{
+					UpdateSprite(spriteCategory, spriteLabel);
+				}
+				foreach (var controlled in descendentControllers)
+				{
+					controlled.CategoryIndex = CategoryIndex;
+					controlled.LabelIndex = LabelIndex;
+					controlled.UpdateSprite(spriteCategory, spriteLabel);
+				}
 			}
-			foreach(var controlled in descendentControllers)
-            {
-				controlled.CategoryIndex = CategoryIndex;
-				controlled.LabelIndex = LabelIndex;
-				controlled.UpdateSprite(spriteCategory, spriteLabel);
-            }
 		}
 
 		public void UpdateSprite(string spriteCategory, string spriteLabel)
